@@ -1,0 +1,16 @@
+#nav{
+    background-color: whitesmoke;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+#top{
+    margin-top: 65px;
+}
+.ui.image image{
+    display: flex;
+    flex-wrap: wrap;
+}
+a{
+    color: black;
+}
+

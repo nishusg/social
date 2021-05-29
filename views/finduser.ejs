@@ -1,0 +1,25 @@
+<%- include("./partials/header") %>
+<div class="ui container">
+    <form action="/finduser" method="post" class="ui form">
+        <input type="text" id="username" name="username" placeholder="Enter Username">
+        <br><br>
+        <button class="ui basic teal fluid button">Search</button>
+    </form>
+    <div class="ui middle  aligned animated list">
+        <% user.forEach(function(user){ %>
+            <div class="item">
+                <img class="ui avatar image" src="<%= user.image %>">
+                <div class="content">
+                    <div class="header">
+                        <a href="/user/<%= user._id%>"><h2><%= user.username %></h2></a> 
+                        <% if(status === 0)%>
+                            <button class="ui tiny basic green button"><span>follow</span></button>
+                        <% if(status === 1)%>
+                            <button class="ui tiny basic red button"><span>Unfollow</span></button>
+                    </div>
+                </div>
+            </div>
+        <% });%>
+    </div>
+</div>
+<%- include("./partials/footer") %>

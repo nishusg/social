@@ -1,0 +1,65 @@
+<%- include("./partials/header") %>
+<div class="ui container">
+  <div class="ui segment">
+      <span>By - <%= post.user.username %></span>
+      <br><br>
+      <img src="<%= post.image %>" class="ui fluid image">
+   </div> 
+  <div class="ui middle aligned divided list">
+      <div class="item">
+          <div class="content">
+              <div class="header">
+                <span class="card-title"><%= post.title%></span>   
+              </div>
+              
+          </div>
+      </div>
+      <div class="item">
+          <div class="content">
+              <div class="header">
+                <p><%= post.description%> </p>
+              </div>
+          </div>
+      </div>
+      <div class="item">
+          <div class="content">
+              <div class="header">
+                - <%= post.created.toTimeString()%>
+              </div>
+          </div>
+      </div>
+      <% if(currentUser && post.user.id.equals(currentUser._id)){ %>
+        <a href="/post/<%= post._id%>/edit" class="ui basic fluid teal button">Edit Post</a>
+        <hr>
+        <form action="/post/<%= post._id %>?_method=DELETE" method="POST" >
+          <button class="ui basic fluid red button">Delete Post</button>
+        </form>
+      <% } %>
+  <div class="ui comments">
+    <h4>Comment <span><%= post.comments.length%></span></h4>
+    <a href="/post/<%=post._id%>/comments/new" class="ui basic fluid green button">Add new comment</a>
+    <% post.comments.forEach(function(comment){ %>
+
+      <div class="comment">
+        <div class="content">
+          <a class="author"><%= comment.author.username%></a>
+          <div class="metadata">
+            <div class="date"><%= comment.created.toDateString()%></div>
+          </div>
+          <div class="text">
+            <%= comment.text%> 
+          </div>
+        </div>
+      </div>
+      <% if(currentUser && comment.author.id.equals(currentUser._id)){ %>
+        <a class="ui basic fluid teal button" href="/post/<%=post._id%>/comments/<%= comment._id %>/edit">Edit</a>
+        <hr>
+        <form  action="/post/<%=post._id%>/comments/<%= comment._id%>?_method=DELETE" method="POST">
+          <button class="ui basic fluid red button">Delete</button>
+        </form>
+      <% } %>
+    <% });%>
+  </div>
+<div>
+
+<%- include("./partials/footer") %>
