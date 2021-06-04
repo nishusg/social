@@ -1,13 +1,18 @@
 <%- include("./partials/header") %>
 <div class="ui container">
   <% post.forEach(function(post){ %>
-    <div class="ui segment" >
+    <!-- <div class="ui segment" >
       <a href="/post/<%= post._id%>">
           <span><%= post.title%></span>
           <br><br>
           <img src="<%= post.image%>" class="ui fluid image" >
       </a>
-    </div>
+    </div> -->
+    <a href="/post/<%= post._id%>">
+      <img id="explore" src="<%= post.image%>" >
+    </a>
   <% });%>
 </div>
+<br>
+<br>
 <%- include("./partials/footer") %>

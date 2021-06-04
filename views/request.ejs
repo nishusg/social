@@ -1,0 +1,24 @@
+<%- include("./partials/header") %>
+<div class="ui container">
+    <h3>All Request Here</h3>
+    <div class="ui middle  aligned animated list">
+        <% request.forEach(function(user){ %>
+            <div class="item">
+                <div class="content">
+                    <div class="header">
+                        <a href="/user/<%= user.sender.id %>" ><h2><%= user.susername %></h2></a>
+                        <form action="/friend" method="post">
+                            
+                            <button class="ui basic fluid green tiny button">Accept</button>
+                        </form>
+                        <hr>
+                        <form action="/decline" method="post">
+                            <button class="ui basic fluid red tiny button">Decline</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        <% });%>
+    </div>
+</div>
+<%- include("./partials/footer") %>

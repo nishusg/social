@@ -6,6 +6,12 @@
 #top{
     margin-top: 65px;
 }
+#explore{
+    float: right;
+    width: 48%;
+    margin: 1%;
+}
+
 .ui.image image{
     display: flex;
     flex-wrap: wrap;
@@ -14,3 +20,13 @@ a{
     color: black;
 }
 
+footer{
+    position: absolute;
+    text-align: center;
+    bottom: 0;
+    width: 100%;
+    height: 2.5rem;
+}
+footer p{
+    color: black;
+}

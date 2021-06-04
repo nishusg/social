@@ -28,6 +28,42 @@
             </div>
         </div>
     </div>
+    <div class="ui equal width grid">
+        <% if(status == 1){ %>
+            <div class="column">
+                <form action="/accept" method="post">
+                    <button id="friend" class="ui basic fluid blue button">Accept</button>
+                </form>
+            </div>
+            <div class="column">
+                <form action="/decline" method="post">
+                    <button id="friend" class="ui basic fluid blue button">Decline</button>
+                </form>
+            </div>
+        <% } else if (status == 2){%>
+            <div class="column">
+                <form action="/cancle" method="post">
+                    <button id="friend" class="ui basic fluid red button">Cancle Request</button>
+                </form>
+            </div>
+        <% } else if (status == 3){%>
+            <div class="column">
+                <form action="/removefriend" method="post">
+                    <button id="friend" class="ui basic fluid blue button">Remove friend</button>
+                </form>
+            </div>
+        <% }else{%>
+            <div class="column">
+                <form action="/user/<%=user._id%>" method="post">
+                    <button id="friend" class="ui basic fluid blue button">Add friend</button>
+                </form>
+            </div>
+        <% } %>
+        
+        <div class="column">
+            <a href="/message/" class="ui basic fluid green button">Message</a>
+        </div>
+    </div>
     <hr>
     <h3>Posts</h3>
     <% post.forEach(function(post){ %>

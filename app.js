@@ -11,6 +11,8 @@ var passportLocalMongoose = require("passport-local-mongoose");
 var User                  = require("./models/user"),
     Posts                 = require("./models/post"),
     Comment               = require("./models/comment");
+    Friend                = require("./models/friend"),
+    SentRequest           = require("./models/sentRequest");
 
 // routes
 var indexRoutes           = require("./routes/index"),

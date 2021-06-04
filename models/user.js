@@ -9,6 +9,12 @@ var UserSchema = new mongoose.Schema({
     image: String,
     bio: String,
     website: String,
+    sentrequest:[
+        {
+            type : mongoose.Schema.Types.ObjectId,
+            ref  : "SentRequest"
+        }
+    ],
     posts :[{
         type : mongoose.Schema.Types.ObjectId,
         ref  : "Post"
