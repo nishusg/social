@@ -35,23 +35,30 @@ router.get("/user/:userid",middleware.isLoggedIn,function(req,res){
                     console.log(err);
                 }else{
                     SentRequest.findOne({rusername:user.username,susername:req.user.username},function(err,request){
-                        console.log(request);
                         if(err){
                             console.log("err");
                         }else{
-                            if(request== null){
+                            if(request == null){
                                 SentRequest.findOne({susername:user.username,rusername:req.user.username},function(err,request){
-                                    console.log(request);
-                                    if(user.username == req.user.username){
-                                        res.redirect("/profile");
-                                    }else if(request.susername==req.user.username && request.rusername == user.username){
-                                        res.render("user",{user:user,post:foundPost,status:request.sstatus});
-                                    }else if(request.susername==user.username && request.rusername == req.user.username){
-                                        res.render("user",{user:user,post:foundPost,status:request.rstatus});
+                                    if(request == null){
+                                        if(user.username == req.user.username){
+                                            res.redirect("/profile");
+                                        }else{
+                                            status = 0;
+                                            res.render("user",{user:user,post:foundPost,status:status});
+                                        }
                                     }else{
-                                        status = 0;
-                                        res.render("user",{user:user,post:foundPost,status:status});
-                                    }
+                                        if(user.username == req.user.username){
+                                            res.redirect("/profile");
+                                        }else if(request.susername==req.user.username && request.rusername == user.username){
+                                            res.render("user",{user:user,post:foundPost,status:request.sstatus});
+                                        }else if(request.susername==user.username && request.rusername == req.user.username){
+                                            res.render("user",{user:user,post:foundPost,status:request.rstatus});
+                                        }else{
+                                            status = 0;
+                                            res.render("user",{user:user,post:foundPost,status:status});
+                                        }
+                                    }  
                                 });
                             }else{
                                 if(user.username == req.user.username){
@@ -91,6 +98,7 @@ router.post("/user/:userid",middleware.isLoggedIn,function(req,res){
                     requestsent.reciever.id   = user._id;
                     requestsent.save();
                     req.user.sentrequest.push(requestsent);
+                    req.user.save();
                     req.flash('success','Friend Request Sent Successfully');
                     res.redirect("/finduser");
                 }
@@ -110,13 +118,63 @@ router.get("/request",middleware.isLoggedIn,function(req,res){
     })
 })
 
-router.post("/decline",middleware.isLoggedIn,function(req,res){
-    User.find({username:req.user.username},function(err,user){
+router.post("/user/:userid/cancle",middleware.isLoggedIn,function(req,res){
+    User.findById(req.params.userid,function(err,user){
         if(err){
             console.log(err);
         }else{
-            
+            SentRequest.findOneAndDelete({susername:req.user.username,rusername:user.username},function(err,request){
+                if(err){
+                    return console.log("err");
+                }else{
+                    req.user.sentrequest.pop(request._id);
+                    req.user.save();
+                    req.flash('error','Friend Request cancle Successfully');
+                    res.redirect("/finduser");
+                }
+                
+            });
         }
     });
 });
+
+router.post("/user/:userid/decline",middleware.isLoggedIn,function(req,res){
+    User.findById(req.params.userid,function(err,user){
+        if(err){
+            console.log("err");
+        }else{
+            SentRequest.findOneAndDelete({susername:user.username,rusername:req.user.username},function(err,request){
+                if(err){
+                    return console.log("err");
+                }else{
+                    user.sentrequest.pop(request._id);
+                    user.save();
+                    req.flash('error','Friend Request decline Successfully');
+                    res.redirect("/request");
+                }
+                
+            });
+        }
+    });
+});
+
+router.post("/user/:userid/accept",middleware.isLoggedIn,function(req,res){
+    User.findById(req.params.userid,function(err,user){
+        if(err){
+            console.log("err");
+        }else{
+            SentRequest.findOneAndUpdate({rusername:req.user.username,susername:user.username},function(err,request){
+                if(err){
+                    console.log(err);
+                }else{
+                    request.rstatus=3;
+                    request.sstatus=3;
+                    request.save();
+                    console.log(request);
+                }
+            });
+        }
+    });
+});
+
 module.exports = router;

@@ -61,14 +61,22 @@ router.put("/post/:id/comments/:comment_id",middleware.checkCommentOwner,functio
 });
 
 router.delete("/post/:id/comments/:comment_id",middleware.checkCommentOwner,function(req,res){
-    Comment.findByIdAndRemove(req.params.comment_id,function(err){
+    Post.findById(req.params.id,function(err,post){
         if(err){
-            res.redirect("back");
+            console.log(err);
         }else{
-            req.flash("success","Successfully deleted comment")
-            res.redirect("/post/"+req.params.id);
+            Comment.findByIdAndRemove(req.params.comment_id,function(err,comment){
+                if(err){
+                    res.redirect("back");
+                }else{
+                    post.comments.pop(comment._id);
+                    post.save();
+                    req.flash("success","Successfully deleted comment")
+                    res.redirect("/post/"+req.params.id);
+                }
+            });
         }
-    });
+    });   
 });
 
 module.exports = router;

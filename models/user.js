@@ -9,6 +9,12 @@ var UserSchema = new mongoose.Schema({
     image: String,
     bio: String,
     website: String,
+    friends:[
+        {
+            type : mongoose.Schema.Types.ObjectId,
+            ref  : "SentRequest"
+        }
+    ],
     sentrequest:[
         {
             type : mongoose.Schema.Types.ObjectId,

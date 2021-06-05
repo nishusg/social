@@ -31,18 +31,18 @@
     <div class="ui equal width grid">
         <% if(status == 1){ %>
             <div class="column">
-                <form action="/accept" method="post">
+                <form action="/user/<%=user.id%>/accept" method="post">
                     <button id="friend" class="ui basic fluid blue button">Accept</button>
                 </form>
             </div>
             <div class="column">
-                <form action="/decline" method="post">
+                <form action="/user/<%=user.id%>/decline" method="post">
                     <button id="friend" class="ui basic fluid blue button">Decline</button>
                 </form>
             </div>
         <% } else if (status == 2){%>
             <div class="column">
-                <form action="/cancle" method="post">
+                <form action="/user/<%=user.id%>/cancle" method="post">
                     <button id="friend" class="ui basic fluid red button">Cancle Request</button>
                 </form>
             </div>

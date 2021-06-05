@@ -62,10 +62,12 @@ router.put("/post/:id",middleware.checkPostOwner,function(req,res){
 });
 
 router.delete("/post/:id",middleware.checkPostOwner,function(req,res){
-    Post.findByIdAndRemove(req.params.id,function(err){
+    Post.findByIdAndRemove(req.params.id,function(err,post){
         if(err)
             res.redirect("/profile");
         else
+            req.user.posts.pop(post._id);
+            req.user.save();
             req.flash("success","Successfully deleted Post")
             res.redirect("/profile");
     });
