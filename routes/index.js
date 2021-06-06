@@ -19,6 +19,16 @@ router.get("/find",middleware.isLoggedIn,function(req,res){
     });
 });
 
+router.get("/friend",middleware.isLoggedIn,function(req,res){
+    Friend.find({username:req.user.username},function(err,friend){
+        if(err){
+            console.log(err);
+        }else{
+            res.render("friend",{friend:friend});
+        }
+    })
+});
+
 router.get("/home",middleware.isLoggedIn,function(req,res){
     res.render("home");
 });

@@ -1,0 +1,18 @@
+<%- include("./partials/header") %>
+
+    <div class="ui container">
+        <h4>My Friend List</h4>
+        <div class="ui middle  aligned animated list">
+            <% friend.forEach(function(user){ %>
+                <div class="item">
+                    <div class="content">
+                        <div class="header">
+                            <a href="/user/<%= user.friendid%>"><h2><%= user.friend %></h2></a> 
+                        </div>
+                    </div>
+                </div>
+            <% });%>
+        </div>   
+    </div>
+
+<%- include("./partials/footer") %>
