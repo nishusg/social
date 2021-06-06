@@ -163,14 +163,78 @@ router.post("/user/:userid/accept",middleware.isLoggedIn,function(req,res){
         if(err){
             console.log("err");
         }else{
-            SentRequest.findOneAndUpdate({rusername:req.user.username,susername:user.username},function(err,request){
+            var rstatus = 3;
+            var sstatus = 3;
+            var requestupdate={rstatus:rstatus,sstatus:sstatus}
+            SentRequest.findOneAndUpdate({rusername:req.user.username,susername:user.username},requestupdate,function(err,request){
                 if(err){
                     console.log(err);
                 }else{
-                    request.rstatus=3;
-                    request.sstatus=3;
-                    request.save();
-                    console.log(request);
+                    var username = request.rusername;
+                    var friend   = request.susername;
+                    var friendid = request.sender.id;
+                    var sentrequestid=request._id;
+                    var newfriend = {username:username,friend:friend,friendid:friendid,sentrequestid:sentrequestid};
+                    Friend.create(newfriend,function(err,rfriend){
+                        if(err){
+                            console.log(err);
+                        }else{
+                            req.user.friends.push(rfriend);
+                            req.user.save();
+                            var username = request.susername;
+                            var friend   = request.rusername;
+                            var friendid = request.reciever.id;
+                            var sentrequestid=request._id;
+                            var newfriend = {username:username,friend:friend,friendid:friendid,sentrequestid:sentrequestid};
+                            Friend.create(newfriend,function(err,sfriend){
+                                if(err){
+                                    console.log(err);
+                                }else{
+                                    user.friends.push(sfriend);
+                                    user.save();
+                                    req.flash('success','Friend Request accepted Successfully');
+                                    res.redirect("/request");
+                                }
+                            });
+                        }
+                    });
+                }
+            });
+        }
+    });
+});
+
+router.post("/user/:userid/removefriend",middleware.isLoggedIn,function(req,res){
+    User.findById(req.params.userid,function(err,user){
+        if(err){
+            console.log(err);
+        }else{
+            Friend.findOneAndDelete({username:req.user.username},function(err,sfriend){
+                if(err){
+                    console.log(err);
+                }else{
+                    req.user.friends.pop(sfriend);
+                    req.user.save();
+                    Friend.findOneAndDelete({username:user.username},function(err,rfriend){
+                        if(err){
+                            console.log(err);
+                        }else{
+                            user.friends.pop(rfriend._id);
+                            user.save();
+                            SentRequest.findByIdAndDelete(rfriend.sentrequestid,function(err,remove){
+                                if(err){
+                                    console.log(err);
+                                }else{
+                                    user.sentrequest.pop(remove._id);
+                                    user.save();
+                                    req.user.sentrequest.pop(remove._id);
+                                    req.user.save();
+                                    req.flash('error','Friend Removed Successfully');
+                                    res.redirect("/profile");
+                                }
+                            });
+                        }
+                    });
                 }
             });
         }

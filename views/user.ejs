@@ -48,7 +48,7 @@
             </div>
         <% } else if (status == 3){%>
             <div class="column">
-                <form action="/removefriend" method="post">
+                <form action="/user/<%=user.id%>/removefriend" method="post">
                     <button id="friend" class="ui basic fluid blue button">Remove friend</button>
                 </form>
             </div>
