@@ -52,6 +52,9 @@
                     <button id="friend" class="ui basic fluid blue button">Remove friend</button>
                 </form>
             </div>
+            <div class="column">
+                <a href="/message" class="ui basic fluid green button">Message</a>
+            </div>
         <% }else{%>
             <div class="column">
                 <form action="/user/<%=user._id%>" method="post">
@@ -59,10 +62,6 @@
                 </form>
             </div>
         <% } %>
-        
-        <div class="column">
-            <a href="/message/" class="ui basic fluid green button">Message</a>
-        </div>
     </div>
     <hr>
     <h3>Posts</h3>

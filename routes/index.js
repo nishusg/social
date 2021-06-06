@@ -4,12 +4,12 @@ var express     = require("express"),
 var router      = express.Router();
 var User        = mongoose.model("User");
 var Post        = mongoose.model("Post");
-var Comment     = mongoose.model("Comment");
+var Friend     = mongoose.model("Friend");
 var middleware = require("../middleware");
 router.get("/",function(req,res){
     res.redirect("/login");
 });
-router.get("/find",middleware.isLoggedIn,function(req,res){
+router.get("/explore",middleware.isLoggedIn,function(req,res){
     Post.find({},function(err,posts){
         if(err)
             console.log(err);
@@ -30,7 +30,7 @@ router.get("/friend",middleware.isLoggedIn,function(req,res){
 });
 
 router.get("/home",middleware.isLoggedIn,function(req,res){
-    res.render("home");
+    res.redirect("/explore");
 });
 
 
