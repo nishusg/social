@@ -9,7 +9,7 @@ var passportLocalMongoose = require("passport-local-mongoose");
 
 // models
 var User                  = require("./models/user"),
-    Posts                 = require("./models/post"),
+    Post                  = require("./models/post"),
     Comment               = require("./models/comment");
     Friend                = require("./models/friend"),
     SentRequest           = require("./models/sentRequest");
