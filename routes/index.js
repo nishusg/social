@@ -30,6 +30,23 @@ router.get("/friend",middleware.isLoggedIn,function(req,res){
 });
 
 router.get("/home",middleware.isLoggedIn,function(req,res){
+    // Friend.find({username:req.user.username},function(err,friend){
+    //     if(err){
+    //         console.log(err);
+    //     }else{
+    //         friend.forEach(function(friend){
+    //             Post.find({name:friend.friend},function(err,post){
+    //                 if(err){
+    //                     console.log(err);
+    //                 }else{
+    //                     req.user.friendpost.push(post);
+    //                     req.user.save();
+    //                 }
+    //             })
+    //         });
+    //         console.log(req.user.friendpost);
+    //     }
+    // })
     res.redirect("/explore");
 });
 

@@ -10,6 +10,8 @@
     </div> -->
     <a href="/post/<%= post._id%>">
       <img id="explore" src="<%= post.image%>" >
+      <hr>
+      <span><%= post.comments.length%></span>
     </a>
   <% });%>
 </div>
