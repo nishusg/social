@@ -109,7 +109,7 @@ router.post("/user/:userid",middleware.isLoggedIn,function(req,res){
 });
 
 router.get("/request",middleware.isLoggedIn,function(req,res){
-    SentRequest.find({rusername:req.user.username},function(err,request){
+    SentRequest.find({rusername:req.user.username,rstatus:1},function(err,request){
         if(err){
             console.log("err");
         }else{
