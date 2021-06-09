@@ -25,6 +25,8 @@ var indexRoutes           = require("./routes/index"),
 
 mongoose.connect("mongodb://localhost/socialnetwork",{ useUnifiedTopology: true , useNewUrlParser: true });
 var app = express();
+
+mongoose.set('useCreateIndex', true);
 app.set('view engine', 'ejs');
 
 // express session for hash
