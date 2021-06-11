@@ -39,6 +39,7 @@ app.use(require("express-session")({
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.static(__dirname + "/style"));
+app.use(express.static(__dirname + "/uploads"));
 app.use(methodOverride("_method"));
 app.use(flash());
 app.use(bodyParser.urlencoded({extended: true}));
