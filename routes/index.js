@@ -9,14 +9,9 @@ var middleware = require("../middleware");
 router.get("/",function(req,res){
     res.redirect("/login");
 });
-router.get("/explore",middleware.isLoggedIn,function(req,res){
-    Post.find({},function(err,posts){
-        if(err)
-            console.log(err);
-        else{
-            res.render("findpost",{post:posts});
-        } 
-    });
+
+router.get("/message",middleware.isLoggedIn,function(req,res){
+    res.send("This routes is under construction");
 });
 
 router.get("/friend",middleware.isLoggedIn,function(req,res){
@@ -30,23 +25,6 @@ router.get("/friend",middleware.isLoggedIn,function(req,res){
 });
 
 router.get("/home",middleware.isLoggedIn,function(req,res){
-    // Friend.find({username:req.user.username},function(err,friend){
-    //     if(err){
-    //         console.log(err);
-    //     }else{
-    //         friend.forEach(function(friend){
-    //             Post.find({name:friend.friend},function(err,post){
-    //                 if(err){
-    //                     console.log(err);
-    //                 }else{
-    //                     req.user.friendpost.push(post);
-    //                     req.user.save();
-    //                 }
-    //             })
-    //         });
-    //         console.log(req.user.friendpost);
-    //     }
-    // })
     res.redirect("/explore");
 });
 

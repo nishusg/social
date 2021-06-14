@@ -1,0 +1,43 @@
+<%- include("./partials/header") %>
+<div class="ui container">
+  <div class="ui segment">
+      <span>By - <%= blog.user.username %>
+        <div class="metadata">
+            <div class="date"><%= blog.created.toDateString()%></div>
+        </div>
+      </span>
+      <br><br>
+       <h4><%= blog.text %></h4>
+   </div> 
+  <div class="ui middle aligned divided list">
+      <% if(currentUser && blog.user.id.equals(currentUser._id)){ %>
+        <form action="/blog/<%= blog._id %>?_method=DELETE" method="POST" >
+          <button class="ui basic fluid red button">Delete Blog</button>
+        </form>
+      <% } %>
+  <div class="ui comments">
+    <h4>Comment <span><%= blog.comments.length%></span></h4>
+    <a href="/blog/<%=blog._id%>/comments/new" class="ui basic fluid green button">Add new comment</a>
+    <% blog.comments.forEach(function(comment){ %>
+
+      <div class="comment">
+        <div class="content">
+          <a class="author"><%= comment.author.username%></a>
+          <div class="metadata">
+            <div class="date"><%= comment.created.toDateString()%></div>
+          </div>
+          <div class="text">
+            <%= comment.text%> 
+          </div>
+        </div>
+      </div>
+      <% if(currentUser && comment.author.id.equals(currentUser._id)){ %>
+        <form  action="/blog/<%=blog._id%>/comments/<%= comment._id%>?_method=DELETE" method="POST">
+          <button class="ui basic fluid red button">Delete</button>
+        </form>
+      <% } %>
+    <% });%>
+  </div>
+<div>
+
+<%- include("./partials/footer") %>

@@ -1,0 +1,13 @@
+<%- include("./partials/header") %>
+<div class="ui container">
+  <% blog.forEach(function(blog){ %>
+    <a href="/blog/<%= blog._id%>">  
+      <h4><%= blog.text %></h4>
+      <hr>
+      <span><%= blog.comments.length%></span>
+    </a>
+  <% });%>
+</div>
+<br>
+<br>
+<%- include("./partials/footer") %>

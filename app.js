@@ -12,14 +12,18 @@ var User                  = require("./models/user"),
     Post                  = require("./models/post"),
     Comment               = require("./models/comment");
     Friend                = require("./models/friend"),
-    SentRequest           = require("./models/sentRequest");
+    SentRequest           = require("./models/sentRequest"),
+    Blog                  = require("./models/blog");
+
 
 // routes
 var indexRoutes           = require("./routes/index"),
     postRoutes            = require("./routes/post"),
     profileRoutes         = require("./routes/profile"),
     authRoutes            = require("./routes/auth"),
+    blogcommentRoutes     = require("./routes/blogcomment"),
     commentRoutes         = require("./routes/comment"),
+    blogRoutes            = require("./routes/blog"),
     finduserRoutes        = require("./routes/finduser");
 
 
@@ -62,6 +66,8 @@ app.use(profileRoutes);
 app.use(authRoutes);
 app.use(finduserRoutes);
 app.use(commentRoutes);
+app.use(blogRoutes);
+app.use(blogcommentRoutes);
 
 
 app.listen(3000, process.env.IP, function(){

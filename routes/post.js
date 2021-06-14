@@ -18,7 +18,21 @@ var storage = multer.diskStorage({
     }
   });
    
-var upload = multer({ storage: storage }).single('image');
+var upload = multer({ 
+    storage: storage, 
+    limits:{fileSize:1000000}
+}).single('image');
+
+router.get("/explore",middleware.isLoggedIn,function(req,res){
+    Post.find({},function(err,posts){
+        if(err)
+            console.log(err);
+        else{
+            res.render("findpost",{post:posts});
+        } 
+    });
+});
+
 
 router.get("/post",middleware.isLoggedIn,function(req,res){
     res.render("post");
@@ -54,10 +68,10 @@ router.post("/post",middleware.isLoggedIn,function(req,res){
         }
     });
 });
-router.get("/post/:id",middleware.isLoggedIn,function(req,res){
-    Post.findById(req.params.id).populate("comments").exec(function(err,foundPost){
+router.get("/post/:postid",middleware.isLoggedIn,function(req,res){
+    Post.findOne({_id:req.params.postid}).populate("comments").exec(function(err,foundPost){
         if(err)
-            console.log(err);
+            console.log("err");
         else{
             res.render("showpost",{post:foundPost});
         }
@@ -66,7 +80,11 @@ router.get("/post/:id",middleware.isLoggedIn,function(req,res){
 
 router.get("/post/:id/edit",middleware.checkPostOwner,function(req,res){
     Post.findById(req.params.id,function(err,foundPost){
-        res.render("editpost",{post:foundPost});
+        if(err)
+            console.log("err");
+        else{
+            res.render("editpost",{post:foundPost});
+        }
     });
 });
 
