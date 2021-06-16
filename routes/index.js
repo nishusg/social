@@ -10,10 +10,6 @@ router.get("/",function(req,res){
     res.redirect("/login");
 });
 
-router.get("/message",middleware.isLoggedIn,function(req,res){
-    res.send("This routes is under construction");
-});
-
 router.get("/friend",middleware.isLoggedIn,function(req,res){
     Friend.find({username:req.user.username},function(err,friend){
         if(err){

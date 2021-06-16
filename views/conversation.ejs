@@ -1,0 +1,35 @@
+<%- include("./partials/header") %>
+<div class="ui container">
+    <div class="ui middle  aligned animated list">
+        <div class="item">
+            <img class="ui avatar image" src="<%=user.image %>">
+            <div class="content">
+                <div class="header">
+                    <a href="/user/<%= user._id%>"><h2><%= user.username %></h2></a> 
+                </div>
+            </div>
+        </div>
+    </div>
+    <% if(conversation==null){%>
+        <h3>Start chat</h3>
+    <%}else{%>
+        <% conversation.forEach(function(message){ %>
+            <div class="item">
+                <!-- <img class="ui avatar image" src="<%= user.image %>"> -->
+                <span><%=message.sender%></span><h3><%=message.text%></h3>
+            </div>
+        <% });%>
+    <%}%>
+    
+    <form action="/message/<%=user._id%>" method="post" class="ui form">
+        <div class="ui container">
+            <div class="field">
+                <label for="text"></label>
+                <input type="text" id="text" name="text"  class="validate" placeholder="Write Message">
+            </div>
+            <button class="ui basic fluid blue button">Send</button>
+        </div>
+    </form>
+</div>
+
+<%- include("./partials/footer") %>

@@ -15,6 +15,12 @@ var UserSchema = new mongoose.Schema({
             ref  : "Friend"
         }
     ],
+    conversations:[
+        {
+            type : mongoose.Schema.Types.ObjectId,
+            ref  : "Conversation"
+        }
+    ],
     sentrequest:[
         {
             type : mongoose.Schema.Types.ObjectId,

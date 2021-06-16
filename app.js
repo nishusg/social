@@ -10,7 +10,9 @@ var passportLocalMongoose = require("passport-local-mongoose");
 // models
 var User                  = require("./models/user"),
     Post                  = require("./models/post"),
-    Comment               = require("./models/comment");
+    Comment               = require("./models/comment"),
+    Message               = require("./models/message"),
+    Conversation          = require("./models/conversation"),
     Friend                = require("./models/friend"),
     SentRequest           = require("./models/sentRequest"),
     Blog                  = require("./models/blog");
@@ -24,6 +26,7 @@ var indexRoutes           = require("./routes/index"),
     blogcommentRoutes     = require("./routes/blogcomment"),
     commentRoutes         = require("./routes/comment"),
     blogRoutes            = require("./routes/blog"),
+    conversationRoutes    = require("./routes/conversation"),
     finduserRoutes        = require("./routes/finduser");
 
 
@@ -68,6 +71,7 @@ app.use(finduserRoutes);
 app.use(commentRoutes);
 app.use(blogRoutes);
 app.use(blogcommentRoutes);
+app.use(conversationRoutes);
 
 
 app.listen(3000, process.env.IP, function(){
