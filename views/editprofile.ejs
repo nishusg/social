@@ -1,5 +1,5 @@
 <%- include("./partials/header") %>
-<form action="/editprofile" method="POST" class="ui form">
+<form action="/editprofile" method="POST" class="ui form" enctype="multipart/form-data">
     <div class="ui container">
         <div class="field">
             <label for="name">Name</label>
@@ -7,7 +7,7 @@
         </div>
         <div class="field">
             <label for="image">Image Link</label>
-            <input type="text" id="image" name="image"  class="validate" value="<%= user.image %>">
+            <input type="file" id="image" name="image"  class="validate" value="<%= user.image %>">
         </div>
         <div class="field">
             <label for="bio">Bio</label>

@@ -2,7 +2,7 @@
 <div class="ui container">
   <% post.forEach(function(post){ %>
     <a href="/post/<%= post._id%>">  
-      <img id="explore" src="<%= post.image%>" >
+      <img id="explore" src="/image/<%=post.image%>" >
       <hr>
       <span><%= post.comments.length%></span>
     </a>

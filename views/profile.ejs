@@ -1,7 +1,7 @@
 <%- include("./partials/header") %>
 <div class="ui container">
     <div class="ui segment">
-        <img src="<%= user.image %>" class="ui fluid image">
+        <img src="/image/<%= user.image %>" class="ui fluid image">
      </div> 
     <div class="ui middle aligned divided list">
         <div class="item">
@@ -45,7 +45,7 @@
             <a href="/post/<%= post._id%>">
                 <span><%= post.title%></span>
                 <br><br>
-                <img src="<%=post.image%>" class="ui fluid image" >
+                <img src="/image/<%=post.image%>" class="ui fluid image" >
             </a>
         </div>
     <% });%>
