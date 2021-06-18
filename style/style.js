@@ -21,8 +21,3 @@ function mouseOut() {
   document.getElementById("tag").style.color = "black";
 }
 
-function greet(name){
-  var greeting = 'hello '+name;
-  alert(greeting);
-
-}
