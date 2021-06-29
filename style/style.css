@@ -30,3 +30,26 @@ footer{
 footer p{
     color: black;
 }
+
+/* laptop */
+@media (min-width:1024px) {
+    #imageshow{
+        height:284px;
+    }
+    
+}
+
+/* tablet */
+@media (min-width:769px) and (max-width:1023px) {
+    #imageshow{
+        height:250px;
+    }
+}
+
+
+/* mobile */
+@media (max-width:768px) {
+    #imageshow{
+        height:465px;
+    }
+}

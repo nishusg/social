@@ -16,16 +16,16 @@
   <div class="ui right vertical menu sidebar">
     <% if(!currentUser){ %>
       <a  class=" item" href="/login"><i class="sign-in alternate icon"></i>Login</a>
-      <a  class="  item" href="/register"><i class="plus square  icon"></i>Sign Up</a>
+      <a  class="  item" href="/register"><i class="plus square  icon"></i>Create Account</a>
     <% }else{ %>
-      <a  class=" item" href="/message">Message<i class="paper plane outline icon"></i></a>
-      <a  class=" item" href="/blog">Blog<i class="blogger icon"></i></a>
-      <a  class=" item" href="/allblog">All Blog<i class="blogger b icon"></i></a>
-      <!-- <a  class=" item" href="/explore">Explore<i class="images icon"></i></a> -->
-      <a class=" item"  href="/finduser">Search User<i class="users icon"></i></a>
-      <a class=" item"  href="/request">Request<i class="users icon"></i></a>
-      <a  class=" item" href="/profile"><%= currentUser.username %><i class=" user icon"></i></span></a>
-      <a class=" item" href="/logout">Logout<i class="sign-out alternate icon"></i></a>
+      <a  class=" item"  href="/message">Message<i class="paper plane outline icon"></i></a>
+      <a  class=" item"  href="/blog">Upload Blog<i class="blogger icon"></i></a>
+      <a  class=" item"  href="/allblog">All Blog<i class="blogger b icon"></i></a>
+      <a  class=" item"  href="/post">Upload Post <i class="images icon"></i></a>
+      <a  class=" item"  href="/finduser">Search User<i class="users icon"></i></a>
+      <a  class=" item"  href="/request">Request<i class="users icon"></i></a>
+      <a  class=" item"  href="/profile"><%= currentUser.username %><i class=" user icon"></i></span></a>
+      <a  class=" item"  href="/logout">Logout<i class="sign-out alternate icon"></i></a>
     <% } %>
   </div>
   <div class="pusher">

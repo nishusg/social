@@ -41,7 +41,7 @@ router.post("/blog",middleware.isLoggedIn,function(req,res){
                         user.blogs.push(blog);
                         user.save();
                         req.flash("success","Successfully Added Blog")
-                        res.redirect("/profile");     
+                        res.redirect("/allblog");     
                 });
             }
         }
@@ -62,12 +62,12 @@ router.get("/blog/:blogid",middleware.isLoggedIn,function(req,res){
 router.delete("/blog/:id",middleware.checkBlogOwner,function(req,res){
     Blog.findByIdAndRemove(req.params.id,function(err,blog){
         if(err)
-            res.redirect("/profile");
+            res.redirect("/allblog");
         else
             req.user.blogs.pop(blog._id);
             req.user.save();
             req.flash("success","Successfully deleted Blog")
-            res.redirect("/profile");
+            res.redirect("/allblog");
     });
 });
 

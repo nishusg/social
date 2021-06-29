@@ -1,13 +1,24 @@
 <%- include("./partials/header") %>
 <div class="ui container">
-  <% post.forEach(function(post){ %>
-    <a href="/post/<%= post._id%>">  
-      <img id="explore" src="/image/<%=post.image%>" >
-      <hr>
-      <span><%= post.comments.length%></span>
-    </a>
-  <% });%>
+  <div class="ui three stackable cards">
+    <% post.forEach(function(post){ %>
+      <div class="card" >
+        <div class="image">
+          <img src="/image/<%=post.image%>" id="imageshow">
+        </div>
+        <div class="content" style="text-transform: capitalize;">
+          <a class="header" href="/post/<%= post._id%>"><%= post.title%></a>
+          <br>
+          <div class="meta">
+            <i class="comment outline icon"></i>
+            <%= post.comments.length%>
+            <span class="right floated">
+              Post by (<a href="/user/<%=post.user.id%>" style="color: rgba(0,0,0,.4);"><%=post.user.username%></a>)
+            </span>
+          </div>
+        </div>
+      </div>
+    <% });%>
+  </div>
 </div>
-<br>
-<br>
 <%- include("./partials/footer") %>

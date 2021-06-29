@@ -28,7 +28,7 @@ router.post("/finduser",middleware.isLoggedIn,function(req,res){
 router.get("/user/:userid",middleware.isLoggedIn,function(req,res){
     User.findById(req.params.userid,function(err,user){
         if(err){
-            console.log("err");
+            console.log(err);
         }else{
             Post.find({name:user.username},function(err,foundPost){
                 if(err){
@@ -36,7 +36,7 @@ router.get("/user/:userid",middleware.isLoggedIn,function(req,res){
                 }else{
                     SentRequest.findOne({rusername:user.username,susername:req.user.username},function(err,request){
                         if(err){
-                            console.log("err");
+                            console.log(err);
                         }else{
                             if(request == null){
                                 SentRequest.findOne({susername:user.username,rusername:req.user.username},function(err,request){

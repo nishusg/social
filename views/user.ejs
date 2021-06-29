@@ -2,7 +2,7 @@
 <div class="ui container">
     <div class="ui segment">
         <span><%= user.username %></span>
-        <img src="<%= user.image %>" class="ui fluid image">
+        <img src="/image/<%= user.image %>" class="ui fluid image">
      </div> 
     <div class="ui middle aligned divided list">
         <div class="item">
@@ -68,14 +68,34 @@
     </div>
     <hr>
     <h3>Posts</h3>
-    <% post.forEach(function(post){ %>
-        <div class="ui segment" >
-            <a href="/post/<%= post._id%>">
-                <span><%= post.title%></span>
-                <br><br>
-                <img src="<%= post.image%>" class="ui fluid image" >
-            </a>
-        </div>
-    <% });%>
+    <br>
+    <div class="ui three stackable cards">
+        <% if(post.length == 0){%>
+            <div class="card">
+                <div class="content" style="text-align: center;">
+                    No Posts Uploaded Yet
+                </div>
+            </div>
+        <%}else{%>
+            <% post.forEach(function(post){ %>
+                <div class="card" >
+                  <div class="image">
+                    <img src="/image/<%=post.image%>" id="imageshow">
+                  </div>
+                  <div class="content" style="text-transform: capitalize;">
+                    <a class="header" href="/post/<%= post._id%>"><%= post.title%></a>
+                    <br>
+                    <div class="meta">
+                      <i class="comment outline icon"></i>
+                      <%= post.comments.length%>
+                      <span class="right floated">
+                        Post by (<a href="/user/<%=post.user.id%>" style="color: rgba(0,0,0,.4);"><%=post.user.username%></a>)
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              <% });%>
+        <%}%> 
+      </div>
 </div>
 <%- include("./partials/footer") %>

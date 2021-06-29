@@ -1,53 +1,67 @@
 <%- include("./partials/header") %>
 <div class="ui container">
-    <div class="ui segment">
-        <img src="/image/<%= user.image %>" class="ui fluid image">
-     </div> 
-    <div class="ui middle aligned divided list">
-        <div class="item">
-            <div class="content">
-                <div class="header">
-                   Name :    <%= user.name %>    
-                </div>
-                
-            </div>
+    <div class="ui grid">
+        <div class="six wide mobile six wide tablet six wide computer column">
+            <img class="ui medium rounded image" src="/image/<%= user.image %>" >
         </div>
-        <div class="item">
-            <div class="content">
-                <div class="header">
-                    About Yourself: <%= user.bio %>
+        <div class="ten wide mobile ten wide tablet ten wide computer column">
+            <div class="item">
+                <div class="ui equal width grid">
+                    <div class="column">
+                        <h2><%= user.username %></h2> 
+                    </div>
+                    <div class="column">
+                        <a href="/editprofile" class="ui basic grey button  " id="edit" >Edit Profile</a>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="item">
-            <div class="content">
-                <div class="header">
-                    Website: <a href="<%= user.website %> ">Open this user website</a>      
+            <div class="item">
+                <div class="ui equal width grid">
+                    <div class="column">
+                        <h3><span><%= user.posts.length%></span> Posts </h3>
+                    </div>
+                    <div class="column">
+                        <a href="/friend" ><h3><span><%= user.friends.length%></span> Friend</h3></a>
+                    </div>
                 </div>
-            </div>
-        </div>
-        <br>
-        <div class="ui equal width grid">
-            <div class="column">
-                <a href="/editprofile" class="ui basic fluid teal button  " id="edit" >Edit Profile</a>
-            </div>
-            <div class="column">
-                <a href="/friend" class="ui basic fluid blue button">Friend (<span><%= user.friends.length%></span>)</a>
-            </div>
-            <div class="column">
-                <a href="/post" class="ui basic fluid green button">Upload Post</a>
             </div>
         </div>
     </div>
-    <hr>
-    <% post.forEach(function(post){ %>
+    <br>
+    <h3 class="ui center aligned header">My Bio</h3>
+    <br>
+    <div class="ui text container">
         <div class="ui segment" >
-            <a href="/post/<%= post._id%>">
-                <span><%= post.title%></span>
-                <br><br>
-                <img src="/image/<%=post.image%>" class="ui fluid image" >
-            </a>
+            <%= user.name%>
         </div>
-    <% });%>
+        <div class="ui segment">
+            <%= user.bio%>
+        </div>
+        <div class="ui segment">
+            <a href="<%= user.website%>" ><%= user.website%></a>
+        </div>
+    </div>
+    <br>
+    <hr>
+    <br>
+    <div class="ui three stackable cards">
+        <% post.forEach(function(post){ %>
+            <div class="card">
+                <div class="image">
+                    <img src="/image/<%=post.image%>" id="imageshow">
+                </div>
+                <div class="content">
+                    <a href="/post/<%= post._id%>" class="header">
+                        <%= post.title%>
+                    </a>
+                    <br>
+                    <div class="meta">
+                        Comment (<%= post.comments.length%>)
+                    </div>
+                </div>
+            </div>
+        <% });%>
+    </div>
+    <br>
 </div>
 <%- include("./partials/footer") %>
