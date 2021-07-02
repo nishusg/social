@@ -10,14 +10,7 @@ router.get("/profile",middleware.isLoggedIn,function(req,res){
         if(err){
             console.log(err);
         }else{
-            Post.find({name:req.user.username},function(err,posts){
-                if(err){
-                    console.log(err);
-                }else{
-                    res.render("profile",{user : user,post:posts,currentUser : req.user});
-                }
-            })
-
+            res.render("profile",{user : user});
         }
     });
 });

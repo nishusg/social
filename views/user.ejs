@@ -1,101 +1,99 @@
 <%- include("./partials/header") %>
 <div class="ui container">
-    <div class="ui segment">
-        <span><%= user.username %></span>
-        <img src="/image/<%= user.image %>" class="ui fluid image">
-     </div> 
-    <div class="ui middle aligned divided list">
-        <div class="item">
-            <div class="content">
-                <div class="header">
-                   Name :    <%= user.name %>    
+    <div class="ui text container">
+        <div class="ui segment">
+            <div class="doubling stackable two column ui grid container">
+                <div class="eight wide  column">
+                    <img class="ui centered medium image" src="/image/<%= user.image %>" id="ppic">
+                </div>
+                <div class="eight wide  column">
+                    <div class="item">
+                        <div class="ui equal width grid">
+                            <div class="column">
+                                <h2><%= user.username %></h2> 
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="item">
+                        <div class="ui equal width grid">
+                            <div class="column">
+                                <a href="/<%=user._id%>/post"><h4><span><%= user.posts.length%></span> Posts </h4></a>
+                            </div>
+                            <div class="column">
+                                <a href="/<%=user._id%>/blog"><h4><span><%= user.blogs.length%></span> Blogs </h4></a>
+                            </div>
+                            <div class="column">
+                                <a href="/<%=user._id%>/friend" ><h4><span><%= user.friends.length%></span> Friends</h4></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="ui large message">
+                <% if(user.name=="undefined"){%>
+                    <div class="item">
+                        <%= user.name%>
+                    </div>
+                <%}%>
+                <% if(user.bio=="undefined"){%>
+                    <hr>
+                    <div class="item">
+                        <p><%= user.bio%></p>
+                    </div>
+                <%}%>
+                <% if(user.website=="undefined"){%>
+                    <hr>
+                    <div class="item">
+                        <%= user.website%>
+                    </div>
+                <%}%>
+                <% if(user.name == "undefined" && user.bio == "undefined" && user.website == "undefined"){%>
+                    <div class="item">
+                        <p>Nothing in the bio</p>
+                    </div>
+                <%}%>
+            </div>
+        <div class="ui equal width grid">
+            <% if(status == 1){ %>
+                <div class="column">
+                    <form action="/user/<%=user.id%>/accept" method="post">
+                        <button id="friend" class="ui basic fluid blue button">Accept</button>
+                    </form>
+                </div>
+                <div class="column">
+                    <form action="/user/<%=user.id%>/decline" method="post">
+                        <button id="friend" class="ui basic fluid red button">Decline</button>
+                    </form>
+                </div>
+            <% } else if (status == 2){%>
+                <div class="column">
+                    <form action="/user/<%=user.id%>/cancle" method="post">
+                        <button id="friend" class="ui basic fluid red button">Cancle Request</button>
+                    </form>
+                </div>
+            <% } else if (status == 3){%>
+                <div class="column">
+                    <form action="/user/<%=user.id%>/removefriend" method="post">
+                        <button id="friend" class="ui basic fluid red button">Remove friend</button>
+                    </form>
                 </div>
                 
-            </div>
-        </div>
-        <div class="item">
-            <div class="content">
-                <div class="header">
-                    About Yourself: <%= user.bio %>
+            <% }else{%>
+                <div class="column">
+                    <form action="/user/<%=user._id%>" method="post">
+                        <button id="friend" class="ui basic fluid blue button">Add friend</button>
+                    </form>
                 </div>
-            </div>
-        </div>
-        <div class="item">
-            <div class="content">
-                <div class="header">
-                    Website: <a href="<%= user.website %> ">Open this user website</a>      
-                </div>
+            <% } %>
+            <div class="column">
+                <form action="/message/<%=user._id%>" method="GET">
+                    <button id="friend" class="ui basic fluid green button">Message</button>
+                </form>
             </div>
         </div>
     </div>
-    <div class="ui equal width grid">
-        <% if(status == 1){ %>
-            <div class="column">
-                <form action="/user/<%=user.id%>/accept" method="post">
-                    <button id="friend" class="ui basic fluid blue button">Accept</button>
-                </form>
-            </div>
-            <div class="column">
-                <form action="/user/<%=user.id%>/decline" method="post">
-                    <button id="friend" class="ui basic fluid red button">Decline</button>
-                </form>
-            </div>
-        <% } else if (status == 2){%>
-            <div class="column">
-                <form action="/user/<%=user.id%>/cancle" method="post">
-                    <button id="friend" class="ui basic fluid red button">Cancle Request</button>
-                </form>
-            </div>
-        <% } else if (status == 3){%>
-            <div class="column">
-                <form action="/user/<%=user.id%>/removefriend" method="post">
-                    <button id="friend" class="ui basic fluid red button">Remove friend</button>
-                </form>
-            </div>
-            
-        <% }else{%>
-            <div class="column">
-                <form action="/user/<%=user._id%>" method="post">
-                    <button id="friend" class="ui basic fluid blue button">Add friend</button>
-                </form>
-            </div>
-        <% } %>
-        <div class="column">
-            <form action="/message/<%=user._id%>" method="GET">
-                <button id="friend" class="ui basic fluid green button">Message</button>
-            </form>
-        </div>
-    </div>
-    <hr>
-    <h3>Posts</h3>
     <br>
-    <div class="ui three stackable cards">
-        <% if(post.length == 0){%>
-            <div class="card">
-                <div class="content" style="text-align: center;">
-                    No Posts Uploaded Yet
-                </div>
-            </div>
-        <%}else{%>
-            <% post.forEach(function(post){ %>
-                <div class="card" >
-                  <div class="image">
-                    <img src="/image/<%=post.image%>" id="imageshow">
-                  </div>
-                  <div class="content" style="text-transform: capitalize;">
-                    <a class="header" href="/post/<%= post._id%>"><%= post.title%></a>
-                    <br>
-                    <div class="meta">
-                      <i class="comment outline icon"></i>
-                      <%= post.comments.length%>
-                      <span class="right floated">
-                        Post by (<a href="/user/<%=post.user.id%>" style="color: rgba(0,0,0,.4);"><%=post.user.username%></a>)
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              <% });%>
-        <%}%> 
-      </div>
 </div>
 <%- include("./partials/footer") %>

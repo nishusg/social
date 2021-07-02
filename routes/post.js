@@ -53,6 +53,32 @@ router.get("/explore",middleware.isLoggedIn,function(req,res){
     });
 });
 
+router.get("/mypost",middleware.isLoggedIn,function(req,res){
+    Post.find({name:req.user.username},function(err,posts){
+        if(err){
+            console.log(err);
+        }else{
+            res.render("mypost",{post:posts});
+        }
+    })
+});
+
+router.get("/:id/post",middleware.isLoggedIn,function(req,res){
+    User.findOne({_id:req.params.id},function(err,user){
+        if(err){
+            console.log(err);
+        }else{
+            Post.find({name:user.username},function(err,posts){
+                if(err){
+                    console.log(err);
+                }else{
+                    res.render("userpost",{post:posts,name:user.username});
+                }
+            });
+        }
+    });
+
+});
 
 router.get("/post",middleware.isLoggedIn,function(req,res){
     res.render("post");

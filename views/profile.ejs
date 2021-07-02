@@ -1,67 +1,52 @@
 <%- include("./partials/header") %>
 <div class="ui container">
-    <div class="ui grid">
-        <div class="six wide mobile six wide tablet six wide computer column">
-            <img class="ui medium rounded image" src="/image/<%= user.image %>" >
-        </div>
-        <div class="ten wide mobile ten wide tablet ten wide computer column">
-            <div class="item">
-                <div class="ui equal width grid">
-                    <div class="column">
-                        <h2><%= user.username %></h2> 
-                    </div>
-                    <div class="column">
-                        <a href="/editprofile" class="ui basic grey button  " id="edit" >Edit Profile</a>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="ui equal width grid">
-                    <div class="column">
-                        <h3><span><%= user.posts.length%></span> Posts </h3>
-                    </div>
-                    <div class="column">
-                        <a href="/friend" ><h3><span><%= user.friends.length%></span> Friend</h3></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <br>
-    <h3 class="ui center aligned header">My Bio</h3>
-    <br>
     <div class="ui text container">
-        <div class="ui segment" >
-            <%= user.name%>
-        </div>
         <div class="ui segment">
-            <%= user.bio%>
-        </div>
-        <div class="ui segment">
-            <a href="<%= user.website%>" ><%= user.website%></a>
-        </div>
-    </div>
-    <br>
-    <hr>
-    <h3 class="ui center aligned header">My Posts</h3>
-    <br>
-    <div class="ui three stackable cards">
-        <% post.forEach(function(post){ %>
-            <div class="card">
-                <div class="image">
-                    <img src="/image/<%=post.image%>" id="imageshow">
+            <div class="doubling stackable two column ui grid container">
+                <div class="eight wide  column">
+                    <img class="ui centered medium image" src="/image/<%= user.image %>" id="ppic">
                 </div>
-                <div class="content">
-                    <a href="/post/<%= post._id%>" class="header">
-                        <%= post.title%>
-                    </a>
-                    <br>
-                    <div class="meta">
-                        Comment (<%= post.comments.length%>)
+                <div class="eight wide  column">
+                    <div class="item">
+                        <div class="ui equal width grid">
+                            <div class="column">
+                                <h2><%= user.username %></h2> 
+                            </div>
+                            <div class="column">
+                                <a href="/editprofile" class="ui basic grey button" id="edit" >Edit </a>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="item">
+                        <div class="ui equal width grid">
+                            <div class="column">
+                                <a href="/mypost"><h4><span><%= user.posts.length%></span> Posts </h4></a>
+                            </div>
+                            <div class="column">
+                                <a href="/myblog"><h4><span><%= user.blogs.length%></span> Blogs </h4></a>
+                            </div>
+                            <div class="column">
+                                <a href="/friend" ><h4><span><%= user.friends.length%></span> Friends</h4></a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-        <% });%>
+        </div>
+        <div class="ui large message">
+            <div class="item">
+                <%= user.name%>
+            </div>
+            <hr>
+            <div class="item">
+                <p><%= user.bio%></p>
+            </div>
+            <hr>
+            <div class="item">
+                <%= user.website%>
+            </div>
+        </div>
     </div>
     <br>
 </div>

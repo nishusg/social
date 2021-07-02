@@ -1,7 +1,14 @@
 <%- include("./partials/header") %>
-<h3 style="text-align: center;">All Request Here</h3>
 <div class="ui text container">
-    <div class="ui middle  aligned animated list">
+    <h3 style="text-align: center;">All Request Here</h3>
+    <hr>
+    <% if(request.length == 0){%>
+        <div class="card">
+            <div class="content" style="text-align: center;">
+                <h4 class="ui center aligned header">No new request</h4>
+            </div>
+        </div>
+    <%}else{%>
         <% request.forEach(function(user){ %>
             <div class="ui segment">
                 <div class="item">
@@ -13,6 +20,6 @@
                 </div>
             </div>
         <% });%>
-    </div>
+    <%}%>
 </div>
 <%- include("./partials/footer") %>

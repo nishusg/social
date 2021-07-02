@@ -1,0 +1,17 @@
+<%- include("./partials/header") %>
+    <div class="ui text container">
+        <h3 class="ui center aligned header"><%= name %>'s Friends</h3>
+        <hr>
+        <% friend.forEach(function(user){ %>
+            <div class="ui segment">
+                <div class="item">
+                    <div class="content">
+                        <div class="header">
+                            <a href="/user/<%= user.friendid%>"><h2><%= user.friend %></h2></a> 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <% });%>   
+    </div>
+<%- include("./partials/footer") %>

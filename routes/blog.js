@@ -16,6 +16,34 @@ router.get("/allblog",middleware.isLoggedIn,function(req,res){
     });
 });
 
+router.get("/myblog",middleware.isLoggedIn,function(req,res){
+    Blog.find({name:req.user.username},function(err,blogs){
+        if(err)
+            console.log(err);
+        else{
+            res.render("myblog",{blog:blogs});
+        } 
+    });
+});
+
+router.get("/:id/blog",middleware.isLoggedIn,function(req,res){
+    User.findOne({_id:req.params.id},function(err,user){
+        if(err){
+            console.log(err);
+        }else{
+            Blog.find({name:user.username},function(err,blogs){
+                if(err){
+                    console.log(err);
+                }else{
+                    res.render("userblog",{blog:blogs,name:user.username});
+                }
+            });
+        }
+    });
+
+});
+
+
 router.get("/blog",middleware.isLoggedIn,function(req,res){
     res.render("blog");
 });

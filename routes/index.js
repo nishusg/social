@@ -20,6 +20,23 @@ router.get("/friend",middleware.isLoggedIn,function(req,res){
     })
 });
 
+router.get("/:id/friend",middleware.isLoggedIn,function(req,res){
+    User.findOne({_id:req.params.id},function(err,user){
+        if(err){
+            console.log(err);
+        }else{
+            Friend.find({username:user.username},function(err,friend){
+                if(err){
+                    console.log(err);
+                }else{
+                    res.render("userfriend",{friend:friend,name:user.username});
+                }
+            });
+        }
+    });
+
+});
+
 router.get("/home",middleware.isLoggedIn,function(req,res){
     res.redirect("/explore");
 });
