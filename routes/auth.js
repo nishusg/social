@@ -21,7 +21,7 @@ router.post("/register",function(req,res){
         }
         passport.authenticate("local")(req,res,function(){
             req.flash("success","Welcome to Social House "+user.username);
-            res.redirect("/home");
+            res.redirect("/profile");
         });
     });
 });
@@ -33,7 +33,7 @@ router.get("/login",function(req,res){
 
 
 router.post("/login",passport.authenticate("local" , {
-    successRedirect : "/home",
+    successRedirect : "/profile",
     failureRedirect : "/login"
 }),function(req,res){
 

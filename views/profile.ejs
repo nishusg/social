@@ -4,7 +4,11 @@
         <div class="ui segment">
             <div class="doubling stackable two column ui grid container">
                 <div class="eight wide  column">
-                    <img class="ui centered medium image" src="/image/<%= user.image %>" id="ppic">
+                    <% if(user.image.length == 36 || user.image.length == 0){%>
+                        <img class="ui centered medium image" src="/image/<%= user.image %>" id="ppic">
+                    <%}else{%>
+                        <img class="ui centered medium image" src="https://semantic-ui.com/images/wireframe/image.png" id="ppic">
+                    <%}%>
                 </div>
                 <div class="eight wide  column">
                     <div class="item">
