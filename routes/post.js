@@ -105,7 +105,6 @@ router.post("/post",middleware.isLoggedIn,upload.single("image"),function(req,re
                         post.save();
                         user.posts.push(post);
                         user.save();
-                        req.flash("success","Successfully Added Post")
                         res.redirect("/profile");     
                 });
             }
@@ -140,7 +139,6 @@ router.put("/post/:id",middleware.checkPostOwner,function(req,res){
         if(err)
             res.redirect("/post");
         else
-            req.flash("success","Successfully Edit Post")
             res.redirect("/post/"+req.params.id);
     });
 });
@@ -156,7 +154,6 @@ router.delete("/post/:id",middleware.checkPostOwner,function(req,res){
                 }else{
                     req.user.posts.pop(post._id);
                     req.user.save();
-                    req.flash("success","Successfully deleted Post")
                     res.redirect("/profile");
                 }
             })
@@ -181,7 +178,6 @@ router.post("/editprofile",middleware.isLoggedIn,upload.single("image"),function
         if(err){
             console.log(err);
         }else{
-            req.flash("success","Successfully Updated Profile");
             res.redirect("/profile");
         }
     });

@@ -34,12 +34,14 @@ footer p{
 #ppic{
     height: 200px;
     width: 300px;
+    object-fit: cover;
 }
 
 /* laptop */
 @media (min-width:1024px) {
     #imageshow{
         height:284px;
+        object-fit: cover;
     }
     
 }
@@ -48,6 +50,7 @@ footer p{
 @media (min-width:769px) and (max-width:1023px) {
     #imageshow{
         height:250px;
+        object-fit: cover;
     }
 }
 
@@ -56,5 +59,6 @@ footer p{
 @media (max-width:768px) {
     #imageshow{
         height:465px;
+        object-fit: cover;
     }
 }

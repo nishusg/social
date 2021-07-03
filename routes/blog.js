@@ -94,7 +94,6 @@ router.delete("/blog/:id",middleware.checkBlogOwner,function(req,res){
         else
             req.user.blogs.pop(blog._id);
             req.user.save();
-            req.flash("success","Successfully deleted Blog")
             res.redirect("/allblog");
     });
 });

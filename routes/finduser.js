@@ -99,7 +99,6 @@ router.post("/user/:userid",middleware.isLoggedIn,function(req,res){
                     requestsent.save();
                     req.user.sentrequest.push(requestsent);
                     req.user.save();
-                    req.flash('success','Friend Request Sent Successfully');
                     res.redirect("/finduser");
                 }
             });
@@ -129,7 +128,6 @@ router.post("/user/:userid/cancle",middleware.isLoggedIn,function(req,res){
                 }else{
                     req.user.sentrequest.pop(request._id);
                     req.user.save();
-                    req.flash('error','Friend Request cancle Successfully');
                     res.redirect("/finduser");
                 }
                 
@@ -149,7 +147,6 @@ router.post("/user/:userid/decline",middleware.isLoggedIn,function(req,res){
                 }else{
                     user.sentrequest.pop(request._id);
                     user.save();
-                    req.flash('error','Friend Request decline Successfully');
                     res.redirect("/request");
                 }
                 
@@ -192,7 +189,6 @@ router.post("/user/:userid/accept",middleware.isLoggedIn,function(req,res){
                                 }else{
                                     user.friends.push(sfriend);
                                     user.save();
-                                    req.flash('success','Friend Request accepted Successfully');
                                     res.redirect("/request");
                                 }
                             });
@@ -229,7 +225,6 @@ router.post("/user/:userid/removefriend",middleware.isLoggedIn,function(req,res)
                                     user.save();
                                     req.user.sentrequest.pop(remove._id);
                                     req.user.save();
-                                    req.flash('error','Friend Removed Successfully');
                                     res.redirect("/profile");
                                 }
                             });
