@@ -4,7 +4,11 @@
         <div class="ui segment">
             <div class="doubling stackable two column ui grid container">
                 <div class="eight wide  column">
-                    <img class="ui centered medium image" src="/image/<%= user.image %>" id="ppic">
+                    <% if(user.image.length == 36 || user.image.length == 0){%>
+                        <img class="ui centered medium image" src="/image/<%= user.image %>" id="ppic">
+                    <%}else{%>
+                        <img class="ui centered medium image" src="https://semantic-ui.com/images/wireframe/image.png" id="ppic">
+                    <%}%>
                 </div>
                 <div class="eight wide  column">
                     <div class="item">
@@ -15,16 +19,32 @@
                         </div>
                     </div>
                     <hr>
+                    <br>
                     <div class="item">
                         <div class="ui equal width grid">
                             <div class="column">
-                                <a href="/<%=user._id%>/post"><h4><span><%= user.posts.length%></span> Posts </h4></a>
+                                <div class="ui compact menu">
+                                    <a class="item" href="/<%=user._id%>/post">
+                                      <i class="icon images"></i> Posts 
+                                      <div class="floating ui grey label"><%= user.posts.length%></div>
+                                    </a>
+                                  </div>
                             </div>
                             <div class="column">
-                                <a href="/<%=user._id%>/blog"><h4><span><%= user.blogs.length%></span> Blogs </h4></a>
+                                <div class="ui compact menu">
+                                    <a class="item" href="/<%=user._id%>/blog">
+                                      <i class="icon images"></i> Blogs 
+                                      <div class="floating ui black label"><%= user.blogs.length%></div>
+                                    </a>
+                                  </div>
                             </div>
                             <div class="column">
-                                <a href="/<%=user._id%>/friend" ><h4><span><%= user.friends.length%></span> Friends</h4></a>
+                                <div class="ui compact menu">
+                                    <a class="item" href="/<%=user._id%>/friend">
+                                      <i class="icon images"></i> Friends 
+                                      <div class="floating ui teal label"><%= user.friends.length%></div>
+                                    </a>
+                                  </div>
                             </div>
                         </div>
                     </div>

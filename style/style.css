@@ -3,9 +3,18 @@
     padding-top: 5px;
     padding-bottom: 5px;
 }
+body{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-style: italic;
+}
 #top{
     margin-top: 65px;
 }
+#tag{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-style: italic;
+}
+
 #explore{
     float: right;
     width: 48%;

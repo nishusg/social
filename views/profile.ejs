@@ -17,21 +17,37 @@
                                 <h2><%= user.username %></h2> 
                             </div>
                             <div class="column">
-                                <a href="/editprofile" class="ui basic grey button" id="edit" >Edit </a>
+                                <a href="/editprofile" class="ui tag blue label" id="edit">Edit </a>
                             </div>
                         </div>
                     </div>
                     <hr>
+                    <br>
                     <div class="item">
                         <div class="ui equal width grid">
                             <div class="column">
-                                <a href="/mypost"><h4><span><%= user.posts.length%></span> Posts </h4></a>
+                                <div class="ui compact menu">
+                                    <a class="item" href="/mypost">
+                                      <i class="icon images"></i> Posts 
+                                      <div class="floating ui grey label"><%= user.posts.length%></div>
+                                    </a>
+                                  </div>
                             </div>
                             <div class="column">
-                                <a href="/myblog"><h4><span><%= user.blogs.length%></span> Blogs </h4></a>
+                                <div class="ui compact menu">
+                                    <a class="item" href="/myblog">
+                                      <i class="icon bold"></i> Blogs 
+                                      <div class="floating ui black label"><%= user.blogs.length%></div>
+                                    </a>
+                                  </div>
                             </div>
                             <div class="column">
-                                <a href="/friend" ><h4><span><%= user.friends.length%></span> Friends</h4></a>
+                                <div class="ui compact menu">
+                                    <a class="item" href="/friend">
+                                      <i class="icon users"></i> Friends 
+                                      <div class="floating ui teal label"><%= user.friends.length%></div>
+                                    </a>
+                                  </div>
                             </div>
                         </div>
                     </div>
