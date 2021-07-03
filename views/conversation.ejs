@@ -1,48 +1,45 @@
 <%- include("./partials/header") %>
-<div class="ui container">
-    <div class="ui text container">
-        <div class="ui middle  aligned animated list">
-            <div class="item">
-                <img class="ui avatar image" src="/image/<%=user.image %>">
-                <div class="content">
-                    <div class="header">
-                        <a href="/user/<%= user._id%>"><h2><%= user.username %></h2></a> 
+<div class="ui text container">
+    <div class="ui middle  aligned animated list">
+        <div class="item">
+            <img class="ui avatar image" src="/image/<%=user.image %>">
+            <div class="content">
+                <div class="header">
+                    <a href="/user/<%= user._id%>"><h2><%= user.username %></h2></a> 
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <% if(conversation==null){%>
+        <h3>Start chat</h3>
+    <%}else{%>
+        <% conversation.forEach(function(message){ %>
+            <% if(message.sender == currentUser.username){%>
+                <div class="ui right aligned container">
+                    <div class="ui compact message">
+                        <p><%=message.text%></p>
                     </div>
                 </div>
-            </div>
-        </div>
-        <div class="ui container">
-            <% if(conversation==null){%>
-                <h3>Start chat</h3>
             <%}else{%>
-                <% conversation.forEach(function(message){ %>
-                    <% if(message.sender == currentUser.username){%>
-                        <div class="ui right aligned container">
-                            <div class="ui compact message">
-                                <p><%=message.text%></p>
-                            </div>
-                        </div>
-                    <%}else{%>
-                        <div class="ui left aligned container">
-                            <div class="ui compact message">
-                                <p><%=message.text%></p>
-                            </div>
-                        </div>
-                    <%}%>
-                <% });%>
-            <%}%>
-        </div>
-        <br>
-        <form action="/message/<%=user._id%>" method="post" class="ui form">
-            <div class="ui container">
-                <div class="field">
-                    <label for="text"></label>
-                    <input type="text" id="text" name="text"  class="validate" placeholder="Write Message">
+                <div class="ui left aligned container">
+                    <div class="ui compact message">
+                        <p><%=message.text%></p>
+                    </div>
                 </div>
-                <button class="ui basic fluid blue button">Send</button>
+            <%}%>
+        <% });%>
+    <%}%>
+    <br>
+    <form action="/message/<%=user._id%>" method="post" class="ui form">
+        <div class="ui container">
+            <div class="field">
+                <label for="text"></label>
+                <input type="text" id="text" name="text"  class="validate" placeholder="Write Message">
             </div>
-        </form>
-    </div>
+            <button class="ui basic fluid blue button">Send</button>
+        </div>
+    </form>
 </div>
 
 <%- include("./partials/footer") %>
