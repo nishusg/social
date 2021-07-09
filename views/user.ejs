@@ -51,30 +51,45 @@
                 </div>
             </div>
         </div>
-        <div class="ui large message">
-                <% if(user.name=="undefined"){%>
+        <div class="ui small message">
+            <div class="item">
+                <% if(!user.name){%>
+                    <div class="item">
+                        Name here
+                    </div>
+                <%}else{%>
                     <div class="item">
                         <%= user.name%>
                     </div>
                 <%}%>
-                <% if(user.bio=="undefined"){%>
+            </div>
+            <div class="item">
+                <% if(!user.bio){%>
+                    <hr>
+                    <div class="item">
+                        Bio here
+                    </div>
+                <%}else{%>
                     <hr>
                     <div class="item">
                         <p><%= user.bio%></p>
                     </div>
                 <%}%>
-                <% if(user.website=="undefined"){%>
+            </div>
+            <div class="item">
+                <% if(!user.website){%>
+                    <hr>
+                    <div class="item">
+                        Website here
+                    </div>
+                <%}else{%>
                     <hr>
                     <div class="item">
                         <%= user.website%>
                     </div>
                 <%}%>
-                <% if(user.name == "undefined" && user.bio == "undefined" && user.website == "undefined"){%>
-                    <div class="item">
-                        <p>Nothing in the bio</p>
-                    </div>
-                <%}%>
             </div>
+        </div>
         <div class="ui equal width grid">
             <% if(status == 1){ %>
                 <div class="column">

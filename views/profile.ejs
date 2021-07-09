@@ -54,17 +54,43 @@
                 </div>
             </div>
         </div>
-        <div class="ui large message">
+        <div class="ui small message">
             <div class="item">
-                <%= user.name%>
+                <% if(!user.name){%>
+                    <div class="item">
+                        Name here
+                    </div>
+                <%}else{%>
+                    <div class="item">
+                        <%= user.name%>
+                    </div>
+                <%}%>
             </div>
-            <hr>
             <div class="item">
-                <p><%= user.bio%></p>
+                <% if(!user.bio){%>
+                    <hr>
+                    <div class="item">
+                        Bio here
+                    </div>
+                <%}else{%>
+                    <hr>
+                    <div class="item">
+                        <p><%= user.bio%></p>
+                    </div>
+                <%}%>
             </div>
-            <hr>
             <div class="item">
-                <%= user.website%>
+                <% if(!user.website){%>
+                    <hr>
+                    <div class="item">
+                        Website here
+                    </div>
+                <%}else{%>
+                    <hr>
+                    <div class="item">
+                        <%= user.website%>
+                    </div>
+                <%}%>
             </div>
         </div>
     </div>
