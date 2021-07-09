@@ -51,45 +51,28 @@
                 </div>
             </div>
         </div>
-        <div class="ui small message">
-            <div class="item">
-                <% if(!user.name){%>
-                    <div class="item">
-                        Name here
+        <% if(!user.name && !user.bio && !user.website ){%>
+            <div class="ui hidden message">
+                Nothing here
+            </div>   
+        <%}else{%>
+            <div class="ui floating small message">
+                <div class="content">
+                    <div class="header">
+                        <% if(user.name){%>
+                            <%= user.name%>
+                            <hr>
+                        <%}%>
                     </div>
-                <%}else{%>
-                    <div class="item">
-                        <%= user.name%>
-                    </div>
-                <%}%>
-            </div>
-            <div class="item">
-                <% if(!user.bio){%>
-                    <hr>
-                    <div class="item">
-                        Bio here
-                    </div>
-                <%}else{%>
-                    <hr>
-                    <div class="item">
+                    <% if(user.bio){%>
                         <p><%= user.bio%></p>
-                    </div>
-                <%}%>
+                    <%}%>
+                    <% if(user.website){%>
+                        <p><%= user.website%></p>
+                    <%}%>
+                </div>
             </div>
-            <div class="item">
-                <% if(!user.website){%>
-                    <hr>
-                    <div class="item">
-                        Website here
-                    </div>
-                <%}else{%>
-                    <hr>
-                    <div class="item">
-                        <%= user.website%>
-                    </div>
-                <%}%>
-            </div>
-        </div>
+        <%}%>
         <div class="ui equal width grid">
             <% if(status == 1){ %>
                 <div class="column">
