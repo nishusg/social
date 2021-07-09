@@ -4,7 +4,7 @@
     <div class="ten wide  column">
       <div class="ui segment">
         <span style="font-size: large;">
-          <b><%= blog.user.username %></b>
+          <a href="/user/<%=blog.user.id%>"><b><%= blog.user.username %></b></a>
         </span>
         <div class="metadata">
           <div class="date"><%= blog.created.toDateString()%></div>
@@ -27,7 +27,7 @@
           <% blog.comments.forEach(function(comment){ %>
             <div class="comment">
               <div class="content">
-                <a class="author"><%= comment.author.username%></a>
+                <a class="author" href="/user/<%=comment.author.id%>"><%= comment.author.username%></a>
                 <div class="metadata">
                   <div class="date"><%= comment.created.toDateString()%></div>
                 </div>
