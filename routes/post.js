@@ -50,7 +50,7 @@ router.get("/explore",middleware.isLoggedIn,function(req,res){
         else{
             res.render("findpost",{post:posts});
         } 
-    });
+    }).sort({ created: 'desc' });
 });
 
 router.get("/mypost",middleware.isLoggedIn,function(req,res){

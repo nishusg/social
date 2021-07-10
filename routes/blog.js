@@ -13,7 +13,7 @@ router.get("/allblog",middleware.isLoggedIn,function(req,res){
         else{
             res.render("findblog",{blog:blogs});
         } 
-    });
+    }).sort({ created: 'desc' });
 });
 
 router.get("/myblog",middleware.isLoggedIn,function(req,res){
