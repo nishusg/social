@@ -10,7 +10,7 @@
         <%}else{%>
             <% user.forEach(function(user){ %>
                 <% if(loginuser==user.sender){%>
-                    <div class="ui segment">
+                    <div class="ui segment" id="findmsg">
                         <div class="item">
                             <div class="content">
                                 <div class="header">
@@ -20,7 +20,7 @@
                         </div>
                     </div>
                 <%}else{%>
-                    <div class="ui segment">
+                    <div class="ui segment" id="findmsg">
                         <div class="item">
                             <div class="content">
                                 <div class="header">

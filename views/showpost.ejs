@@ -4,17 +4,17 @@
     <div class="ten wide  column">
       <div class="ui segment">
         <a href="/user/<%=post.user.id%>" style="font-weight: bold; font-size: large;"><%=post.user.username%></a>
-        <br><br>
-        <img src="/image/<%=post.image%>" class="ui fluid image">
+        <hr>
+        <div class="item">
+          <div class="content">
+            <div class="header">
+               <span class="card-title"><%= post.title%></span>   
+            </div>
+          </div>
+        </div>
+        <img src="/image/<%=post.image%>" class="ui fluid image" id="spost">
       </div> 
       <div class="ui middle aligned divided list">
-        <div class="item">
-            <div class="content">
-                <div class="header">
-                  <span class="card-title"><%= post.title%></span>   
-                </div>
-            </div>
-        </div>
         <div class="item">
             <div class="content">
                 <div class="header">

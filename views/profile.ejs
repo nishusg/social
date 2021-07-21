@@ -26,7 +26,15 @@
                     <div class="item">
                         <div class="ui equal width grid">
                             <div class="column">
-                                <div class="ui compact menu">
+                                <div class="ui compact menu" id="btn">
+                                    <a class="item" href="/friend">
+                                      <i class="icon users"></i> Friends 
+                                      <div class="floating ui teal label"><%= user.friends.length%></div>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="column" >
+                                <div class="ui compact menu" id="btn">
                                     <a class="item" href="/mypost">
                                       <i class="icon images"></i> Posts 
                                       <div class="floating ui grey label"><%= user.posts.length%></div>
@@ -34,18 +42,10 @@
                                   </div>
                             </div>
                             <div class="column">
-                                <div class="ui compact menu">
+                                <div class="ui compact menu" id="btn">
                                     <a class="item" href="/myblog">
                                       <i class="icon bold"></i> Blogs 
                                       <div class="floating ui black label"><%= user.blogs.length%></div>
-                                    </a>
-                                  </div>
-                            </div>
-                            <div class="column">
-                                <div class="ui compact menu">
-                                    <a class="item" href="/friend">
-                                      <i class="icon users"></i> Friends 
-                                      <div class="floating ui teal label"><%= user.friends.length%></div>
                                     </a>
                                   </div>
                             </div>
@@ -64,10 +64,10 @@
                     <div class="header">
                         <% if(user.name){%>
                             <%= user.name%>
-                            <hr>
                         <%}%>
                     </div>
                     <% if(user.bio){%>
+                        <hr>
                         <p><%= user.bio%></p>
                     <%}%>
                     <% if(user.website){%>

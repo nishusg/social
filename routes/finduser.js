@@ -99,7 +99,7 @@ router.post("/user/:userid",middleware.isLoggedIn,function(req,res){
                     requestsent.save();
                     req.user.sentrequest.push(requestsent);
                     req.user.save();
-                    res.redirect("/finduser");
+                    res.redirect("/user/"+user._id);
                 }
             });
         }
@@ -128,7 +128,7 @@ router.post("/user/:userid/cancle",middleware.isLoggedIn,function(req,res){
                 }else{
                     req.user.sentrequest.pop(request._id);
                     req.user.save();
-                    res.redirect("/finduser");
+                    res.redirect("/user/"+user._id);
                 }
                 
             });
@@ -147,7 +147,7 @@ router.post("/user/:userid/decline",middleware.isLoggedIn,function(req,res){
                 }else{
                     user.sentrequest.pop(request._id);
                     user.save();
-                    res.redirect("/request");
+                    res.redirect("/user/"+user._id);
                 }
                 
             });
@@ -189,7 +189,7 @@ router.post("/user/:userid/accept",middleware.isLoggedIn,function(req,res){
                                 }else{
                                     user.friends.push(sfriend);
                                     user.save();
-                                    res.redirect("/request");
+                                    res.redirect("/user/"+user._id);
                                 }
                             });
                         }
@@ -225,7 +225,7 @@ router.post("/user/:userid/removefriend",middleware.isLoggedIn,function(req,res)
                                     user.save();
                                     req.user.sentrequest.pop(remove._id);
                                     req.user.save();
-                                    res.redirect("/profile");
+                                    res.redirect("/user/"+user._id);
                                 }
                             });
                         }
