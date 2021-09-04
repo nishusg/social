@@ -29,8 +29,8 @@ var indexRoutes           = require("./routes/index"),
     conversationRoutes    = require("./routes/conversation"),
     finduserRoutes        = require("./routes/finduser");
 
-
-mongoose.connect("mongodb://localhost/socialnetwork",{ useUnifiedTopology: true , useNewUrlParser: true });
+mongoose.connect("mongodb+srv://nishu:nishu@gallery.wfxdb.mongodb.net/gallery?retryWrites=true&w=majority",{useNewUrlParser: true, useUnifiedTopology: true });
+//mongoose.connect("mongodb://localhost/socialnetwork",{ useUnifiedTopology: true , useNewUrlParser: true });
 var app = express();
 
 mongoose.set('useCreateIndex', true);
