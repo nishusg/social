@@ -12,7 +12,7 @@ var User        = mongoose.model("User");
 var Post        = mongoose.model("Post");
 var middleware  = require("../middleware");
 
-var mongoURI = "mongodb+srv://nishu:nishu@gallery.wfxdb.mongodb.net/gallery?retryWrites=true&w=majority";
+var mongoURI = "mongodb+srv://nishu:nishu@gallery.wfxdb.mongodb.net/social?retryWrites=true&w=majority";
 var conn = mongoose.createConnection(mongoURI,{ useUnifiedTopology: true , useNewUrlParser: true });
 let gfs;
 conn.once('open', () =>{
