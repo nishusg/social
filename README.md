@@ -5,4 +5,4 @@ It is a basic social media application but different. (still in development).
 - messaging (without websockets)
 - easy to use
 - simple ui
-- visit - https://colleagueall.herokuapp.com/login
+- visit - https://colleaguemain.herokuapp.com/login
